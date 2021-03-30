@@ -12,7 +12,7 @@ const Shipment = () => {
     const savedCart = getDatabaseCart();
       const orderDetails = {...loggedInUser, products: savedCart, shipment: data, orderTime: new Date()};
 
-      fetch('http://localhost:5000/addOrder', {
+      fetch('https://thawing-falls-22894.herokuapp.com/addOrder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
