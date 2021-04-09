@@ -20,6 +20,7 @@ export const handleGoogleSignIn = () => {
         photo: photoURL,
         success: true
       };
+      setUserToken();
       return signedInUser;
     })
     .catch(err => {
@@ -27,6 +28,18 @@ export const handleGoogleSignIn = () => {
       console.log(err.message);
     })
   }
+
+
+  const setUserToken = () => {
+    firebase.auth().currentUser.getIdToken(true)
+    .then(function(idToken) {
+      sessionStorage.setItem('userToken', idToken)
+    })
+    .catch(function(error) {
+      console.log('User er token ante pari nai', error)
+    });
+  }
+
 
   export const handleFbSignIn = () => {
     const fbProvider = new firebase.auth.FacebookAuthProvider();
